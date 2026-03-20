@@ -1,0 +1,9 @@
+{
+  "runtime": {
+    "cli": {
+      "opencode": true,
+      "claudecode": false,
+      "codex": false
+    }
+  }
+}

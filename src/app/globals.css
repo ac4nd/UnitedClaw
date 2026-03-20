@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+/* 开启基于 class 的手动暗黑模式切换 (Tailwind v4 核心配置) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-background: #f8fafc;
+  --color-foreground: #0f172a;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased overflow-hidden;
+  }
+}
+
+/* 自定义滚动条与网格背景 */
+@layer utilities {
+  .custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #6366f1; border-radius: 20px; }
+  
+  .bg-dot-pattern-light { 
+    background-image: radial-gradient(rgba(148, 163, 184, 0.4) 1px, transparent 1px); 
+    background-size: 24px 24px; 
+  }
+  .bg-dot-pattern-dark { 
+    background-image: radial-gradient(rgba(51, 65, 85, 0.6) 1px, transparent 1px); 
+    background-size: 24px 24px; 
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  
+  .config-popup { backdrop-filter: blur(16px); }
+}
+
+/* 覆盖 input range 样式 */
+input[type=range]::-webkit-slider-thumb { 
+  border-radius: 10px; 
+  background: #6366f1; 
+  cursor: pointer; 
+  -webkit-appearance: none; 
+  width: 12px; 
+  height: 12px; 
+}
