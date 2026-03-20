@@ -242,6 +242,9 @@ app.whenReady().then(async () => {
 
   ipcMain.handle('check-agent-sync-status', async (event, filename) => {
   if (!workspaceInfo.success) return { success: false };
+  if (!filename || typeof filename !== 'string') {
+    return { success: false, msg: 'Invalid filename parameter' };
+  }
   try {
     const syncStatus = {};
 

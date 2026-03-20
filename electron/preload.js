@@ -5,7 +5,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   saveAgentFile: (filename, content) => ipcRenderer.invoke('save-agent-file', filename, content),
   loadAgents: () => ipcRenderer.invoke('load-agents'),
   deleteAgentFile: (filename) => ipcRenderer.invoke('delete-agent-file', filename),
-  checkAgentSyncStatus: () => ipcRenderer.invoke('check-agent-sync-status'),
+  checkAgentSyncStatus: (filename) => ipcRenderer.invoke('check-agent-sync-status', filename),
   
   // 系统环境扫描
   readConfig: () => ipcRenderer.invoke('read-unitedclaw-config'),

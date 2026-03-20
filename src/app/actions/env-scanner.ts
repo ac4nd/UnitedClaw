@@ -4,6 +4,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import os from 'os';
 
 const execAsync = promisify(exec);
 
@@ -19,7 +20,9 @@ async function isCommandAvailable(command: string): Promise<boolean> {
 }
 
 export async function scanLocalEnvironment() {
-  const configPath = path.join(process.cwd(), 'unitedclaw.json');
+  const homeDir = os.homedir();
+  const workspacePath = path.join(homeDir, '.unitedclaw');
+  const configPath = path.join(workspacePath, 'unitedclaw.json');
   
   // 1. 并发执行本地 CLI 命令探测
   const [hasOpencode, hasClaudeCode, hasCodex] = await Promise.all([
